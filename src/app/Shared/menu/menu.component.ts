@@ -1,36 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-declare var jQuery:any;
-declare var $:any;
+import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { ROUTES } from './menu-items';
+import { RouteInfo } from './sidebar.metadata';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router, ActivatedRoute } from '@angular/router';
+declare var $: any;
 
 @Component({
   selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  templateUrl: './menu.component.html'
 })
 export class MenuComponent implements OnInit {
+  showMenu = '';
+  public sidebarnavItems: any[];
+  // this is for the open close
+  addExpandClass(element: any) {
+    if (element === this.showMenu) {
+      this.showMenu = '0';
+    } else {
+      this.showMenu = element;
+    }
+  }
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
+  // End open close
   ngOnInit() {
+    this.sidebarnavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
   }
-
-
-  SidebarCollapse () {
-      $('.menu-collapsed').toggleClass('d-none');
-      $('.sidebar-submenu').toggleClass('d-none');
-      $('.submenu-icon').toggleClass('d-none');
-      $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-
-      // Treating d-flex/d-none on separators with title
-      var SeparatorTitle = $('.sidebar-separator-title');
-      if ( SeparatorTitle.hasClass('d-flex') ) {
-          SeparatorTitle.removeClass('d-flex');
-      } else {
-          SeparatorTitle.addClass('d-flex');
-      }
-
-      // Collapse/Expand icon
-      $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-  }
-
-};
+}

@@ -1,6 +1,16 @@
 <app-navbar> </app-navbar>
-<div class="row" id="body-row">
-  <app-menu></app-menu>
+<div id="main-wrapper" [ngClass]="
+    {
+        'defaultdark': color == 'defaultdark',
+        'mini-sidebar': showMinisidebar
+    }
+">
+
+  <aside class="left-sidebar">
+      <div class="scroll-sidebar">
+        <app-sidebar></app-sidebar>
+      </div>
+  </aside>
   <div class="container">
       <router-outlet></router-outlet>
   </div>

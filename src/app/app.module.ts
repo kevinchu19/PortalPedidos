@@ -15,7 +15,19 @@ import { ClientesService }  from "./services/clientes.service";
 import { APP_ROUTING } from "./app-routes";
 import { NavbarComponent } from './Shared/navbar/navbar.component';
 import { MenuComponent } from './Shared/menu/menu.component';
+import { SidebarComponent } from './Shared/sidebar/sidebar.component';
 
+//scrollbar
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true,
+  wheelSpeed: 2,
+  wheelPropagation: true
+};
 
 @NgModule({
   declarations: [
@@ -25,7 +37,8 @@ import { MenuComponent } from './Shared/menu/menu.component';
     AbmClientesComponent,
     ListaClientesComponent,
     NavbarComponent,
-    MenuComponent
+    MenuComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
